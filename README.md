@@ -1,5 +1,5 @@
 # Rounding-Integer-Division
-Integer division in C truncates towards zero. Sometimes rounding is more appropriate, but it's not trivial.  
+Integer division in C and C++ truncate towards zero. Sometimes rounding is more appropriate, but it's not trivial.  
 
 These portable C++ function templates implement rounding integer division for any integral types, signed or unsigned, without danger of overflow and without conversion to floating point types. The divisor `y` has to be positive and non-zero.
 
@@ -7,7 +7,7 @@ These portable C++ function templates implement rounding integer division for an
 ```
 // Round from Zero Division, no overflow
 template<typename T>
-static T rfr0div(T x, T y) {
+static T rounding_from_0_div(T x, T y) {
     T r = x / y, m = x % y;
     y = (y >> 1) + (y & 1);
     return r + (~(x < 0) & (m >= y)) - ((x < 0) & (m <= -y));
@@ -15,7 +15,7 @@ static T rfr0div(T x, T y) {
 
 // Round to Zero Division, no overflow
 template<typename T>
-static T rto0div(T x, T y) {
+static T rounding_to_0_div(T x, T y) {
     T r = x / y, m = x % y;
     y >>= 1;
     return r + (~(x < 0) & (m > y)) - ((x < 0) & (m < -y));
