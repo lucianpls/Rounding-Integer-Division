@@ -1,5 +1,5 @@
 # Rounding-Integer-Division
-Integer division in C and C++ truncate towards zero. Sometimes rounding is more appropriate, but it's not trivial.  
+Integer division in C and C++ truncate towards zero. Sometimes rounding is more appropriate, but it's not trivial. The common solution is to convert to double, add 0.5 then perform floating point division and convert the result back to integer. It works, but it's inefficient and will produce errors when the integers have higher values than double precision floating points can accurately accomodate.
 
 These portable C++ function templates implement rounding integer division for any integral types, signed or unsigned, without danger of overflow and without conversion to floating point types. The divisor `y` has to be positive and non-zero. If y is negative, use -f(x,-y).
 
