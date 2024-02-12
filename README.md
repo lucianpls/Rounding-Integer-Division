@@ -1,7 +1,7 @@
 # Rounding-Integer-Division
 Integer division in C and C++ truncate towards zero. Sometimes rounding is more appropriate, but it's not trivial.  
 
-These portable C++ function templates implement rounding integer division for any integral types, signed or unsigned, without danger of overflow and without conversion to floating point types. The divisor `y` has to be positive and non-zero.
+These portable C++ function templates implement rounding integer division for any integral types, signed or unsigned, without danger of overflow and without conversion to floating point types. The divisor `y` has to be positive and non-zero. If y is negative, use -f(x,-y).
 
 
 ```
@@ -22,7 +22,7 @@ static T rounding_to_0_div(T x, T y) {
 }
 ```
 
-Alternate solution that uses two divisions, so it's slower, but takes care of the 
+Alternate solution that uses two divisions, so it's slower. Works for signed x, as long as y is positive.
 ```
 template<typename T>
 T math_rounddiv(T x, T y) {
