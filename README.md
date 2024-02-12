@@ -22,15 +22,15 @@ static T rounding_to_0_div(T x, T y) {
 }
 ```
 
-Alternate solution that uses two divisions, so it's slower. Works for signed x, as long as y is positive.
+Alternate solution that uses two divisions, making it slower. Same as the ones before, these work for signed x, as long as y is positive.
 ```
 template<typename T>
-T math_rounddiv(T x, T y) {
-    return x / y + (x % y) / (y / 2 + 1);
+T math_rounddiv_from_0(T n, T d) {
+    return x / y + (x % y) / (y / 2 + y % 2);
 }
 
 template<typename T>
-T math_rounddiv_away(T n, T d) {
-    return x / y + (x % y) / (y / 2 + y % 2);
+T math_rounddiv_to_0(T x, T y) {
+    return x / y + (x % y) / (y / 2 + 1);
 }
 ```
