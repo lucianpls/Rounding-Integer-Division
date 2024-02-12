@@ -21,3 +21,16 @@ static T rounding_to_0_div(T x, T y) {
     return r + (~(x < 0) & (m > y)) - ((x < 0) & (m < -y));
 }
 ```
+
+Alternate solution that uses two divisions, so it's slower, but takes care of the 
+```
+template<typename T>
+T math_rounddiv(T x, T y) {
+    return x / y + (x % y) / (y / 2 + 1);
+}
+
+template<typename T>
+T math_rounddiv_away(T n, T d) {
+    return x / y + (x % y) / (y / 2 + y % 2);
+}
+```
