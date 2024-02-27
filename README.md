@@ -18,14 +18,14 @@ T math_rounddiv_to_0(T x, T y) {
 
 The template functions above work well, but they are relatively slow since they require at least two chained integer divisions.
 The following C++ function templates are optimized versions that only use one division, operating at roughly the same speed as the normal (truncating) integer division on a modern CPU.
-For performance resons it is helpful to declare the type of y as unsigned.
+For performance resons it is helpful to declare the type of y as unsigned. 
 
 ```
 // Round from Zero Division, no overflow
 template<typename T>
 static T rounding_from_0_div(T x, T y) {
     T r = x / y, m = x % y;
-    y = (y >> 1) + (y & 1);
+    y = y / 2 + y % 2;
     return r + (~(x < 0) & (m >= y)) - ((x < 0) & (m <= -y));
 }
 
@@ -33,7 +33,7 @@ static T rounding_from_0_div(T x, T y) {
 template<typename T>
 static T rounding_to_0_div(T x, T y) {
     T r = x / y, m = x % y;
-    y >>= 1;
+    y /= 2;
     return r + (~(x < 0) & (m > y)) - ((x < 0) & (m < -y));
 }
 ```
