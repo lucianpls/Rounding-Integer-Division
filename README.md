@@ -38,6 +38,6 @@ static T rounding_to_0_div(T x, T y) {
 }
 ```
 
-If y can be negative, wrap the call in a macro or template, using `((y < 0)?-f(x,-y):f(x,y))`. The only problem left is when d == min_int (negative) and of course d == 0. This will be slower due to the explicit branch or 
-conditional assignment, especially when the sign of y is unpredictable.
+If y can be negative, wrap the chosen function in a macro or template, using `((y < 0)?-f(x,-y):f(x,y))`. The only problem left is when d == INT_MIN for signed types and of course d == 0. It will be 
+slower due to the explicit branch or conditional assignment, especially when the sign of y is unpredictable.
 
