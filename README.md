@@ -21,7 +21,7 @@ The following C++ function templates are optimized versions that only use one di
 For performance resons it is helpful to declare the type of y as unsigned. 
 
 ```
-// Round from Zero Division, no overflow
+// Faster Round from Zero Division, no overflow
 template<typename T>
 static T rounding_from_0_div(T x, T y) {
     T r = x / y, m = x % y;
